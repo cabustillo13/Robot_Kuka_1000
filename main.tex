@@ -246,7 +246,7 @@ Todas las imágenes deben incluir una leyenda y en el caso de hacer referencia a
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Consideraciones}
+\section{Coordenas Generalizadas}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Coordenadas del centro de masa de cada barra considerada (barras 1,2 y 3-4)}
@@ -282,6 +282,28 @@ Todas las imágenes deben incluir una leyenda y en el caso de hacer referencia a
     &J_2_Y = \frac{1}{12}m_2(V^2 + d_2^2)&\\
     &J_4_Z = \frac{1}{2} m_4r^2&
     &J_3_4_Y = [J_3_Y + m_3(dcm_3_4 - \frac{W}{2})^2] + [J_4_Y + m_4(B - dcm_3_4)^2] &
+\end{flalign*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Formulación de las ecuaciones de movimiento}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Energía cinética total}
+\begin{flalign*}
+    &T = \frac{1}{2}m_1[\dot{X_c_1}^2 + \dot{Z_c_1}^2] + \frac{1}{2}m_2[\dot{X_c_2}^2 + \dot{Z_c_2}^2] + \frac{1}{2}(m_3+m_4)[\dot{X_c_3_4}^2 + \dot{Z_c_3_4}^2] + \frac{1}{2}J_1_Y\dot{\theta_1}^2& \\
+    &+\frac{1}{2}J_2_Y\dot{\theta_2}^2+\frac{1}{2}J_3_4_Y\dot{\theta_3}^2 + \frac{1}{2}J_4_Z\dot{\theta_4}^2&
+\end{flalign*}
+
+\subsection{Energía disipada total}
+\begin{flalign*}
+    &D =\frac{1}{2}[c_1\dot{\theta_1}^2 + c_2(\dot{\theta_2}-\dot{\theta_1})^2 + c_3(\dot{\theta_3}-\dot{\theta_3})^2 + c_4\dot{\theta_4}^2]&
+\end{flalign*}
+
+\subsection{Energía potencial total}
+\begin{flalign*}
+&U = \frac{1}{2}[k_1\theta_1^2 + k_2(\theta_2 - \theta_1)^2 + k_3(\theta_3 - \theta_2)^2 + k_4\theta_4^2] + [m_1g\frac{R}{2}(1 + cos\theta_1) + m_2g[R(1+cos\theta1) + & \\ 
+&(m_3+m_4)g(R-dcm_3_4)(1+cos\theta_1)] + [m_2g\frac{V}{2}(1 + sen\theta_2)] + (m_3+m_4)gV(1+sen\theta_2)&\\
+&+(m_3+m_4)gdcm_3_4(1-cos\theta_3)&
 \end{flalign*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
