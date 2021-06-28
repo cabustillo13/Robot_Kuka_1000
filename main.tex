@@ -67,186 +67,118 @@
 %% Encabezado
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \membrete
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introducción}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-La revista \asoimat{}, es una revista electrónica de publicación trimestral que se dedica a la publicación de artículos periodísticos y científicos de las matemáticas puras, aplicadas y ciencias afines a estas. El proceso de publicación de un artículo requiere la revisión de pares previo a su publicación.
+El KR 1000 TITAN, es un robot industrial de 6 grados de libertad gdl  con 6 respectivos servomotores, diseñado para trabajar con cargas pesadas de más de 1000 kg, a elevada rapidez y precisión, y hasta una distancia de 6,5 m. Se utiliza para manipular bloques de motor, piedras, piezas de vidrio, vigas de acero, piezas navales y aeronáuticas, bloques de mármol o prefabricados de hormigón, entre otros muchos.
 
-Por otra parte, todos los artículos publicados en la revista \asoimat son de libre acceso sin restricciones económicas o de contenido de manera electrónica o física. Para más información se recomienda leer la guía para autores disponible en el sitio web de la revista: \url{https://revistaasoimat.epn.edu.ec/index.php/ASOiMAT/information/authors}.
+Se realizará un estudio vibratorio de dicho robot kuka, para corroborar su correcto funcionamiento ante vibraciones libres. Lo cual es de gran interés sobre todo por el enorme peso y gran velocidad que maneja el robot, para verificar si su precisión se mantiene aceptable.
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Derechos de autor}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Los artículos publicados en la revista \asoimat se encuentran sujetos a la licencia: Atribución - NoComercial - CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0). Para más información, puede visitar: \url{https://creativecommons.org/licenses/by-nc-sa/4.0/}. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Requerimientos técnicos}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-A continuación se encuentra una lista con los requerimientos técnicos que debe tener el documento.
-
-\begin{enumerate}
-\item 
-    Los artículos deben estar escritos en \LaTeX{} con la presente plantilla que se encuentra en libre distribución para su uso.
-\item 
-    Al momento de presentar el artículo no debe realizar ninguna manipulación de estilo (alinear textos, tamaño de letra, etc.). El único formato admitido para énfasis de texto es la \textit{itálica}. Las palabras en otro idioma deben ir siempre en \textit{itálica}. (Se recomienda el uso del comando \verb|\emph| para este propósito.)
-\item 
-    Las imágenes deben estar en formato \texttt{JPG}, \texttt{PNG}, \texttt{PDF} o \texttt{EPS}, con una resolución apropiada a la presentación.
-\item 
-    Las imágenes deben archivos \texttt{.jpg}, \texttt{.png}, \texttt{.pdf} o\texttt{.eps}, con una resolución apropiada a la presentación.
-\item 
-    Escriba el código fuente de manera clara y ordenada, usando comentarios si requiere sugerir un formato o diseño específico para la publicación de su trabajo. 
-\item 
-    En el caso de generar nuevos comandos o ambientes, estos deben colocarse en el preámbulo del documento en la sección destinada para este fin.
-\end{enumerate}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Partes del documento}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-El artículo a presentarse debe contener las siguientes partes:
-
-\subsection{Título}
-
-El título del artículo debe ser corto y conciso.
-
-\subsection{Nombres de los autores y filiación}
-
-El nombre o los nombres de los autores deben ser incluidos en el apartado destinado para este caso, junto con su filiación. Se debe agregar solo uno de los autores como contacto de correspondencia y este debe estar señalado con el ícono correspondiente.
-
-\subsection{Listas}
-
-Las listas se construyen de manera sencilla llamando al ambiente predeterminado para estas, no se deben modificar los parámetros de la misma ni el estilo. Ejemplos de listas y enumeraciones se encuentran a continuación:
-
-\begin{multicols}{2}
-\paragraph{Listas}
-\begin{itemize} 
-    \item Punto 1
-    \item Punto 2
-    \item Punto 3
-\end{itemize}
-
-\paragraph{Enumeraciones}
-\begin{enumerate} 
-    \item Punto 1
-    \item Punto 2
-    \item Punto 3
-\end{enumerate}
-
-\end{multicols}
-
-En el caso de que las listas o enumeraciones de numerosos ítems de longitud, se deben usar varias columnas para un mejor ajuste. Por ejemplo:
-
-\subsubsection{Listas} 
-
-\begin{multicols}{3}
-\begin{itemize} 
-    \item Punto 1
-    \item Punto 2
-    \item Punto 3
-    \item Punto 4
-    \item Punto 5
-    \item Punto 6
-    \item Punto 7
-    \item Punto 8
-    \item Punto 9
-\end{itemize}
-\end{multicols}
-
-\subsubsection{Enumeraciones}
-\begin{multicols}{3}
-\begin{enumerate} 
-    \item Punto 1
-    \item Punto 2
-    \item Punto 3
-    \item Punto 4
-    \item Punto 5
-    \item Punto 6
-    \item Punto 7
-    \item Punto 8
-    \item Punto 9
-\end{enumerate}
-\end{multicols}
-
-Para el desarrollo de listas y enumeraciones anidadas, se recomienda un máximo de 3 niveles de anidación. Ejemplos de dichas anidaciones se encuentran a continuación:
-
-% \begin{multicols}{2}
-\paragraph{Listas}
-\begin{enumerate}
-    \item Punto 1
-    \item Punto 2 \begin{enumerate}
-        \item Punto 2.1
-        \item Punto 2.2 \begin{enumerate}
-            \item Punto 2.2.1
-        \end{enumerate}
-    \end{enumerate}
-\end{enumerate}
-
-\paragraph{Enumeraciones}
-\begin{itemize}
-    \item Punto 1
-    \item Punto 2 \begin{itemize}
-        \item Punto 2.1
-        \item Punto 2.2 \begin{itemize}
-            \item Punto 2.2.1
-        \end{itemize}
-    \end{itemize}
-\end{itemize}
-
-% \end{multicols}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Figuras}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Las figuras aceptadas incluyen tanto gráficos creados en TikZ, PSTricks como imágenes de mapas de bits.
-
-\subsection{TikZ}
-
-Por defecto, se recomienda emplear el lenguaje TikZ para el desarrollo de figuras. Los paquetes necesarios para este fin deben ser incluidos en el documento principal.
+En el movimiento programado, con el cual el robot realiza una operación genérica determinada, se captura un instante en el cual detiene su movimiento, trabando los motores. En dicha posición se estudiará el sistema en vibraciones libres, en forma similar a como si se tratara de una estructura fija. En donde, las vibraciones libres se manifestarán por la energía cinética, de la inercia del robot y de la masa que manipula, en dicho instante de tiempo. Y se representan mediante las condiciones iniciales de velocidad del sistema dinámico. Por otro lado, las condiciones iniciales de posición se las considera nulas, lo que significa que el robot se encuentra en la posición exacta en la que los motores se encuentran trabados, y sin vibrar.
+Debido a la rígida estructura del robot, se considera que los parámetros de rigidez y amortiguamiento solamente se encuentran dados por los propios motores, y no por los materiales de los eslabones en sí. Esto es debido a que, en comparación, los efectos de los materiales sobre la respuesta de las vibraciones, son despreciables. Es decir, para el estudio solo se considerarán las rigideces y amortiguamientos de los servomotores.
 
 \begin{figure}[H]
     \centering
-    \begin{tikzpicture}
-    \draw (-1,0) -- (4,0) node[right] {$x$};
-    \draw (0,-1) -- (0, 2) node[left] {$y$};
-    \draw[smooth, domain = 0:2, color=red] plot (\x,\x)node[right] {$y = x$
-    };
-    \draw[smooth, domain = -2:2, color=blue] plot (\x,{sin(2*\x r)+1})
-    node[right] {$y = \sin(2x)+1$};
-    \draw[smooth, domain = -1:1, color=black] plot (\x,{exp(\x)}) node[right
-    ] {$y = e^x$};
-    \end{tikzpicture}
-    \caption{Gráfico}
-    \label{fig:grafico2}
-\end{figure}
-
-\subsection{PSTrciks}
-
-Aunque se recomienda TikZ, el autor puede optar por usar PSTricks. En este caso, debe asegurarse de que las imágenes adjuntadas se encuentren en formato \texttt{EPS}.
-
-\subsection{Imágenes}
-
-Las imágenes a ser incluidas pueden ser dibujos, mapas o fotografías con una resolución deseada de 300~dpi sin fondo; además, deben ser almacenadas en una carpeta separada con un nombre corto que permita su identificación.
-
-El autor del artículo es responsable de verificar los derechos de autor de las imágenes que se envían como parte del artículo.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.60\textwidth]{Imagenes/Imagen1.jpeg}
-    \caption{Leyenda de la figura.}
+    \includegraphics[width=0.60\textwidth]{Imagenes/modelo_2.jpg}
+    \caption{Robot KUKA KR 1000 TITAN.}
     \label{fig:etiqueta de la figura}
 \end{figure}
 
-Se recomienda que la imagen no ocupe más del 50\% de la página salvo que así lo requiera por sus dimensiones. Un tamaño recomendado es un ancho del 75\% de la línea de texto con una altura proporcional a la primera.
+El objetivo consiste en realizar un estudio vibratorio, para poder asegurar que las oscilaciones producidas no sean demasiado grandes como para interferir en la operación que lleve a cabo el robot.
+Desarrollando un modelo físico y matemático del sistema dinámico real, obteniendo su respuesta, y modificando los parámetros que pueden variar de una aplicación a otra, para obtener conclusiones acerca de cómo esto influye, y qué tan bueno es su diseño respecto a las vibraciones.En particular, modificando los parámetros de la masa de la carga que manipula, y las velocidades iniciales del sistema.
 
-Todas las imágenes deben incluir una leyenda y en el caso de hacer referencia a las mismas, se deben usar referencias cruzadas para este fin, es decir, los comandos: \verb@\label@ y \verb@\ref@.
-
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.60\textwidth]{Imagenes/area_trabajo.png}
+    \caption{Área de trabajo.}
+    \label{fig:etiqueta de la figura}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Coordenas Generalizadas}
+\section{Modelo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+El modelado del problema es uno de los ejes principales considerados en este proyecto.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.60\textwidth]{Imagenes/modelo_3.jpg}
+    \caption{Robot físico real.}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+\subsection{Modelo Físico}
+
+Una vez seleccionado el sistema dinámico real a estudiar, se procedió a construir el modelo físico. En el cual, como primera instancia se habían considerado los 6 gdl del robot como se describe a continuación:
+
+Se tienen 6 coordenadas generalizadas, y 6 grados de libertad del sistema real, una por cada articulación del robot. A las cuales, desde la articulación base hasta la articulación que hace rotar propiamente dicho al efector final, se las nombra como: \theta_1, \theta_2, \theta_3, \theta_4, \theta_5, \theta_6.
+
+ \text{En donde, cada uno de estos gdl, describe un movimiento de vibración en los siguientes}\\
+ \text{planos del espacio cartesiano tridimensional:}\\
+\theta_1  ->  plano XY\\
+\theta_2  ->  plano XZ\\
+\theta_3  ->  plano XZ\\
+\theta_4  ->  plano YZ\\
+\theta_5  ->  plano XZ\\
+\theta_6  ->  plano XY \text{ (rotación del efector final)}.\\
+
+\subsection{Primer aproximación del modelo}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.60\textwidth]{Imagenes/modelo_4.jpg}
+    \caption{Primer esquema del Sistema Dinámico [No se utiliza].}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+Este fue el primer modelo planteado pero luego se razonó que la complejidad del sistema superaba a los alcances previstos para el proyecto. Esta alta complejidad es debida al movimiento tridimensional producido por los múltiples gdl del sistema, ya que daría lugar a ecuaciones de movimiento demasiado grandes, e incluso se deberían considerar fuerzas de coriolis.
+
+\text{Por ello, se optó por reducir la cantidad de gdl a 4, no considerando los gdl correspondientes a }\theta_1 \\ \text{ ni } \theta_4 \text{ mostrados en la figura anterior, y solo se toman a } \theta_2, \theta_3 \text{ y } \theta_5 \text{del plano XZ, y a } \theta_6 \text{ del plano XY.} \\
+\text{Por lo que, con esta simplificación, para el estudio descrito a lo largo del artículo solo se tendrá en }\\ \text{cuenta el movimiento en el plano XZ, ya que el gld} \theta_6 \text{solo produce la rotación del efector final sobre} \\
+\text{su mismo eje.}
+
+
+\subsection{Modelo simplificado utilizado}
+
+El modelo físico queda simplificado como se muestra en el siguiente esquema:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.60\textwidth]{Imagenes/modelo.jpg}
+    \caption{Interpretación del robot físico real para su respectivo modelado.}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+Al plantear el modelo físico se decidió incorporar al robot un efector final genérico. En específico se muestra en el esquema el dibujo de una pinza robótica (Gripper), la cual puede estar o no sosteniendo un objeto a desplazar. La masa de dicho objeto, sumada a la masa del Efector Final constituyen la masa denominada: $m_4$.
+Y siendo $dcm_3_4$ la distancia desde el centro de rotación de la articulación 3 hasta el centro de masa de la masa $m_4$.
+
+
+Otra simplificación importante que se tiene en cuenta en el modelo, es la de considerar los ángulos como absolutos en el espacio, y no articulares como serían propiamente en el robot. Esto es también para facilitar el desarrollo de las ecuaciones en el modelo matemático.
+
+
+\subsection{Masas implicadas en el modelo}
+
+Masa total, incluyendo servomotores, sin efector final, y sin unidad de control: 4690kg\\
+Masa estimada de la base fija empotrada: 690kg \\
+Masa de cada uno de los 6 servomotores: 42kg.
+[ (6servos*42kg)/4000kg = 0,063 ]  
+ \\Se observa que la masa de los servomotores es insignificante respecto a la masa de todo el sistema, por lo que se considera la masa de cada motor como incluida en la masa de  tres primeras barras (ejes) del modelo del robot:\\
+
+- Masa estimada de barra 0:	m_{0} =(4690kg - 690kg)/3partes = 1333kg\\
+
+- Masa estimada de barra 1: m_{1} = 1333kg\\
+
+- Masa estimada de barra 2: m_{2} = 800kg + (1333kg-800kg)/2 = 1067kg
+
+[ 4690kg = 690kg + 2*1333kg + 1067kg + 267kg ]\\
+
+- Masa estimada de barra 4 [Efector Final Genérico + Carga Genérica]:  310kg\\
+
+Masa Neta (incluyendo efector final y carga):  5000kg
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Coordenadas Generalizadas}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Coordenadas del centro de masa de cada barra considerada (barras 1,2 y 3-4)}
@@ -426,68 +358,7 @@ J_1_Y + m1\frac{R^2}{4}+m_2R^2 & 0 & (m_3+m_4)(Rdcm_3_4) & (m3+m4)R^2\\
 0 & 0 & 0 & J_4_Z
 \end{bmatrix}
 \end{equation}
-
-
-
-
-\subsection{Ambientes matemáticos}
-Están incluidos los siguientes ambientes:
-\begin{itemize}
-    \item Definición (\texttt{defi});
-    \item Teorema (\texttt{teo});
-    \item Proposición (\texttt{prop});
-    \item Lema (\texttt{lema});
-    \item Axioma (\texttt{axioma}).
-\end{itemize}
-Algunos ejemplos se pueden encontrar a continuación:
-
-\begin{defi}[Razón de cambio promedio]
-    Sea $\func{f}{I}{\R}$ una función, $a\in I$ y $h\in\R$ tal que $a+h\in I$, se define \emph{la razón de cambio promedio de la función $f$ entre $a$ y $a+h$} por
-    \[
-        \frac{f(a+h)-f(a)}{h}.
-    \]
-    Este número también es conocido como \emph{variación media} de $f$ en el intervalo que une $a$ y $a + h$.
-\end{defi}
-
-\begin{prop}
-    Sean $\func{f}{I}{\R}$ una función y $a\in I$. Se tiene que $f$ es derivable en $a$ si y solo si existe
-    \[
-        \lim_{x\to a}\frac{f(x)-f(a)}{x-a}.
-    \]
-\end{prop}
-
-\begin{lem}
-    Sean $a,p\in\N$, con $p$ un primo. Si $a^2$ es un múltiplo de $p$, entonces $a$ también es un múltiplo de $p$.
-\end{lem}
-
-\begin{axioma}[Axiomas de Peano]
-    El conjunto de los números naturales, está caracterizado por las siguientes propiedades:
-    \begin{enumerate}
-    \item
-        El conjunto $\N$ es no vacío, posee al elemento 1.
-    \item
-        Todo número natural posee un sucesor.
-    \item
-        Dados dos números $n,m\in\N$ con el mismo sucesor, entonces $n=m$.
-    \item
-        El número 1 no es sucesor de ningún otro elemento de $\N$.
-    \item
-        Los números naturales son un conjunto inductivo.
-    \end{enumerate}
-\end{axioma}
-
-Las demostraciones deben ser escritas en el ambiente \texttt{proof} con la siguiente sintaxis:
-
-\begin{lstlisting}[language=TeX]
-\begin{proof}
-% Aquí escriba la demostración
-%
-% Use el comando \qedhere para un mejor ajuste
-\end{proof}
-\end{lstlisting}
-
-Para una mejor redacción matemática se sugiere leer: \url{http://www.texnia.com/archive/ortomatem.pdf}. Para una escritura más sencilla de fórmulas y desarrollos matemáticos se puede usar el paquete \texttt{aleph-comandos} que se encuentra en: \url{https://git.alephsub0.org/}. 
-
+   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Tablas}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -514,45 +385,14 @@ Las tablas, al igual que las figuras, siempre deben poseer una leyenda y en el c
 Este hace uso del paquete \texttt{booktabs} que mejora la presentación de las mismas y usa los comandos \verb@\toprule@, \verb@\midrule@ y \verb@\bottomrule@.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Enlaces}
+\section{Conclusiones}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Para la inclusión de direcciones URL, se recomienda el uso del comando \verb@\url@, únicamente en caso de que el enlace sea extenso o complejo, se puede reemplazar por el comando \verb@\href@.
+Respecto a la Estructura y comportamiento Robot KUKA:
+Analizando la tabla(1), y observando el desplazamiento sufrido por el 1° gdl al momento de darle una condición inicial de velocidad a este, podemos observar que el valor máximo de desplazamiento en grados es de cerca 1.8°, el cual se atenúa totalmente luego de 4 segundos.Al compararlo con otros estudios y papers podemos asegurar que es un valor aceptable y describe un buen comportamiento del brazo robótico.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Código}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Analizando la tabla(4), observamos que este es el caso más exigido y en sí poco probable, ya que en la realidad no es común que se desplacen más de 2 articulaciones al mismo tiempo a máxima velocidad, y además sosteniendo una carga adicional m4=500kg. Podemos observar que el valor máximo de desplazamiento en grados es de cerca 9.5°, el cual se atenúa totalmente luego de 5 segundos. También se puede observar que al momento de sostener la carga adicional, las aceleraciones angulares aumentan en gran medida.
 
-Para la inclusión de código se debe usar el paquete \texttt{listing} y para pseudocódigo, \texttt{algorithm2e}; estos paquetes ya se encuentra cargado en la clase y un ejemplo de pseudocódigo y código se encuentra a continuación. Se debe incluir leyendas de cada código y pseudocódigo.
-
-\subsection{Pseudocódigo} 
-
-Ejemplo de pseudocódigo.
-
-\begin{algorithm}[H]
-\KwData{Dos números reales $a$ y $b$}
-\KwResult{El máximo entre $a$ y $b$}
-\SetKwFunction{maxi}{Máximo}
-\Fn{\maxi{$a,b$}}{
-    \eIf{ $a < b$}
-        {\Return{$b$}}
-        {\Return{$a$}}
-    }
-\caption{Ejemplo de Pseudocódigo.}
-\end{algorithm}
-
-\subsection{Código}
-
-Ejemplo de código.
-
-\begin{lstlisting}[language=Python,caption={Ejemplo de código.},captionpos=b]]
-def OrdenBurbuja(a):
-    for i in range(len(a)-2):
-        for j in range(len(a)-i-1):
-            if a[j] > a[j+1]:
-                a[j],a[j+1] = a[j+1],a[j]
-    return a
-\end{lstlisting}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Bibliografía y citas}
@@ -588,14 +428,6 @@ Finalmente, se presentan ejemplos de referencias que se pueden utilizar:
     \item Sitios web: \cite{Bib04}
     \item Videos: \cite{Bib05}
 \end{itemize}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Comentarios}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-El presente formato se base en la clase \texttt{aleph-revista}, generada dentro del proyecto Alephsub0 (\url{https://alephsub0.org/}). Tanto el formato como la clase se encuentran en desarrollo, cualquier reporte de problema o sugerencia de mejora se lo puede realizar al siguiente correo: 
-\email{daniel.lara@alephsub0.org}.
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Referencias
