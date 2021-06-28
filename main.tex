@@ -270,6 +270,24 @@ Todas las imágenes deben incluir una leyenda y en el caso de hacer referencia a
     &(2\dot{\theta_1}\dot{\theta_2}VRsen\theta_2 - 2\dot{\theta_1} dcm_3_4\dot{\theta_3}Rcos\theta_3)sen\theta_1 + 2\dot{\theta_1}\dot{\theta_2}VRcos\theta_2cos\theta_1 ]&
 \end{flalign*}
 
+\subsection{Para \theta_2}
+
+\begin{flalign*}
+    &\frac{\partial(U)}{\partial(\theta_2)} = \theta_1(-k_2) + \theta_2(k_2 + k_3) + \theta_3(-k_3) + m_2g\frac{V}{2} + (m_3+m_4)gV&
+\end{flalign*}
+
+\begin{flalign*}
+    &\frac{\partial(D)}{\partial(\dot{\theta_2})} = \dot{\theta_1}(-c_2) + \dot{\theta_2}(c_2+c_3) + \dot{\theta_3}(-c_3) &
+\end{flalign*}
+
+\begin{flalign*}
+    &\frac{d(T)}{dt(\dot{\theta_2})} = J_2_Y*\ddot{\theta_2}(m_2\frac{V^2}{4}) + \ddot{\theta_1}[ -\frac{V}{2}R(cos\theta_2sen\theta_1 - cos\theta_1sen\theta_2)] + \frac{1}{2}(m_3+m_4)[2V^2\ddot{\theta_2} +&\\ &2Vdcm_3_4\ddot{\theta_3}cos\theta_2sen\theta3 - [2\ddot{\theta_1}VRcos\theta2sen\theta1 + (2Vdcm_3_4\ddot{\theta_3}cos\theta3 - 2\ddot{\theta_1}VRcos\theta1)sen\theta2] ]  &
+\end{flalign*}
+
+\begin{flalign*}
+    &\frac{\partial(T)}{\partial(\theta_2)} = \frac{1}{2}m_2\dot{\theta_1}\theta2VR(sen\theta1sen\theta2 + cos\theta1cos\theta2) - \frac{1}{2}(m_3+m_4)[2\dot{\theta_2}Vdcm_3_4\dot{\theta_3}sen\theta2sen\theta3 -& \\ & (2\dot{\theta_1}\dot{\theta_2}VRsen\theta1sen\theta2 - (2\dot{\theta_2}Vdcm_3_4\dot{\theta_3}cos\theta2cos\theta3 - 2\dot{\theta_1}\dot{\theta_2}VRcos\theta1cos\theta2))]&
+\end{flalign*}
+
 
 
 
