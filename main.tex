@@ -245,7 +245,44 @@ Se recomienda que la imagen no ocupe más del 50\% de la página salvo que así 
 Todas las imágenes deben incluir una leyenda y en el caso de hacer referencia a las mismas, se deben usar referencias cruzadas para este fin, es decir, los comandos: \verb@\label@ y \verb@\ref@.
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Consideraciones}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsection{Coordenadas del centro de masa de cada barra considerada (barras 1,2 y 3-4)}
+
+\begin{flalign*}
+    &X_c_1 = -\frac{R}{2}sen\theta_1&
+    &Z_c_1 = \frac{R}{2}cos\theta_1& \\
+    &X_c_2 = -Rsen\theta_1 + \frac{V}{2}cos\theta_2&
+    &Z_c_2 = Rcos\theta_1 + \frac{V}{2}sen\theta_2& \\
+    &X_c_3_4 = - Rsen\theta_1 + Vcos\theta_2 + dcm_3_4sen\theta_3&
+    &Z_c_3_4 = Rcos\theta_1 + Vsen\theta_2 - dcm_3_4cos\theta_3&
+\end{flalign*}
+
+
+
+\subsection{Velocidades del centro de masa de cada barra considerada (barras 1,2 y 3-4)}
+
+\begin{flalign*}
+    &\dot{X}_c_1 = -\frac{R}{2}\dot{\theta_1}sen\theta_1&
+    &\dot{Z}_c_1 = \frac{R}{2}\dot{\theta_1}cos\theta_1& \\
+    &\dot{X}_c_2 = -R\dot{\theta_1}sen\theta_1 + \frac{V}{2}\dot{\theta_2}cos\theta_2&
+    &\dot{Z}_c_2 = R\dot{\theta_1}cos\theta_1 + \frac{V}{2}\dot{\theta_2}sen\theta_2& \\
+    &\dot{X}_c_3_4 = - R\dot{\theta_1}sen\theta_1 + V\dot{\theta_2}cos\theta_2 + dcm_3_4\dot{\theta_3}sen\theta_3&
+    &\dot{Z}_c_3_4 = R\dot{\theta_1}cos\theta_1 + V\dot{\theta_2}sen\theta_2 - dcm_3_4\dot{\theta_3}cos\theta_3&
+\end{flalign*}
+
+\noindent
+\text{donde }{dcm_3_4 = \frac{m_3\frac{W}{2} + m_4B}{m_3+m_4}
+
+\subsection{Momentos de Inercia}
+\begin{flalign*}
+    &J_1_Y = \frac{1}{12}m_1(R^2 + d_1^2)&
+    &J_2_Y = \frac{1}{12}m_2(V^2 + d_2^2)&\\
+    &J_4_Z = \frac{1}{2} m_4r^2&
+    &J_3_4_Y = [J_3_Y + m_3(dcm_3_4 - \frac{W}{2})^2] + [J_4_Y + m_4(B - dcm_3_4)^2] &
+\end{flalign*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Desarrollo de las ecuaciones de Lagrange}
