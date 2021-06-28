@@ -177,6 +177,40 @@ Masa de cada uno de los 6 servomotores: 42kg.
 
 Masa Neta (incluyendo efector final y carga):  5000kg
 
+\subsection{Rigideces rotacionales de los Servomotores}
+
+Luego de una extensa búsqueda en internet, se lograron encontrar los valores de las rigideces rotacionales k de los servomotores del robot Kuka:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.60\textwidth]{Imagenes/ks.png}
+    \caption{Fuente: https://hal.archives-ouvertes.fr/hal-00633095/document.}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+De los cuales solo se utilizaran los valores de las articulaciones 2, 3, 5 y 6, reescritos a continuación:
+\\$k_1$ = 6,6 x106 Nm/rad
+\\$k_2$ = 3,9 x106 Nm/rad
+\\$k_3$ = 6,6 x105 Nm/rad
+\\$k_4$ = 4,7 x105 Nm/rad
+
+\subsection{Amortiguamientos rotacionales de los servomotores}
+
+Luego de una extensa búsqueda en internet, no se pudieron encontrar por ningún lado los 
+valores de los amortiguamientos rotacionales c de los servomotores del robot kuka.
+
+Por lo que los amortiguamientos se obtuvieron al final de la simulación utilizando la función lsqr de MATLAB (método de los mínimos cuadrados) ya que con la matriz Keq y Meq obtuvimos la matriz Cmodal, aplicando las ecuaciones correspondientes obtuvimos C y comparamos los valores obtenidos con los del modelo.
+$c_1$ = 1.2044  x108   Nms/rad
+$c_2$ = 0.4118  x108   Nms/rad
+$c_3$ = 0.1289  x108   Nms/rad
+$c_4$ = - 0.0005  x108 Nms/rad
+
+Se utilizaron amortiguamientos $\zeta$ = [ 0.02; 0.03; 0.04; 0.043 ], ya con Meq y Keq se resolvió el problema a través del método de descomposición modal para obtener la solución del sistema.
+
+Comparándolo con una investigación similar: Vibration damping control of robot arm intended for service application in human environment.
+Se pudo observar que el $\zeta$=0.0249  considerando el brazo robótico solo como 2 masas, por lo cual se puede asegurar que los valores de amortiguamiento son cercanos a los experimentales.
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Coordenadas Generalizadas}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -358,31 +392,454 @@ J_1_Y + m1\frac{R^2}{4}+m_2R^2 & 0 & (m_3+m_4)(Rdcm_3_4) & (m3+m4)R^2\\
 0 & 0 & 0 & J_4_Z
 \end{bmatrix}
 \end{equation}
-   
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Tablas}
+\section{Modelo Matemático}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
+
+Al sustituir las variables de las matrices por sus valores numéricos:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/meq.png}
+    \caption{Matriz equivalente de masas Meq.}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/keq.png}
+    \caption{Matriz equivalente de rigideses Keq.}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/cei.jpg}
+    \caption{Valores de CI (condiciones iniciales).}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+Como criterio para las condiciones iniciales de nuestro problema, se simularán con distintos valores la velocidad inicial máxima dada por el fabricante, 58°/s para el 1° eje, 50°/s para el 2°, 50°/s para el 3°, y 60°/s para el 4, en unidades de sistema internacional corresponden a:
+$V_0$=[1.0123, 0.873, 0.873, 1.0472] rad/s donde cada posición corresponde a cada eje correspondiente. En todos los casos la posición inicial $X_0$=[0, 0, 0, 0]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Métodos utilizados para la resolución de las ecuaciones de movimiento}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Para la composición de tablas, la letra siempre debe ser de tamaño menor a la del resto del texto y se recomienda optar por el siguiente formato:
+\subsection{Método de descomposición modal}
 
-\begin{table}[H]
-    \centering\small
-    \begin{tabular}{ccc}
-    \toprule
-        \textbf{Fórmula} & \textbf{Prueba 1} & \textbf{Prueba 2} \\ 
-    \midrule
-        Compuesto 1 & $38.4$  &  $6.32$\\ 
-        Compuesto 2 & $16.6$ & $12.5$ \\ 
-    \bottomrule
-    \end{tabular}
-    \label{tab:01}
-    \caption{Resultados de la experimentación de distintas substancias.}
-\end{table}
+Es un método utilizado para la resolución de sistemas de N grados de libertad, donde se trabaja con N ecuaciones diferenciales ordinarias de segundo orden acopladas entre sí.
 
-Las tablas, al igual que las figuras, siempre deben poseer una leyenda y en el caso de ser referenciadas dentro del documento, deben hacer uso de referencias cruzas, es decir, los comandos: \verb@\label@ y \verb@\ref@.
+Los desplazamientos asociados a los grados de libertad se expresan como una combinación lineal de los modos normales del sistema. Esta transformación lineal desacopla el sistema de ecuaciones diferenciales original, de manera de obtener un sistema de N ecuaciones diferenciales de segundo orden desacoplado.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Solución del modelo matemático}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Para el cálculo de las frecuencias naturales de vibración primero fue necesario calcular los autovalores y autovectores, para se utilizó la función de MATLAB “eig()”, la cual nos da los autovalores y autovectores del sistema normalizados usando la matriz de masas y la matriz de rigidez. Los autovectores se agrupan por columnas en una matriz, que llamamos “Matriz Modal Nomal”:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.40\textwidth]{Imagenes/e0.png}
+    }
+\end{figure}
+
+Siendo $V_n$ cada uno de los vectores propios normalizados. En el caso del modelo los vectores propios obtenidos fueron:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/e1.png}
+    }
+\end{figure}
+
+Una vez obtenido los autovalores, aplicaremos la raíz cuadrada a cada uno de los mismos para obtener la frecuencia natural de vibración ($w_n_i$) relacionada con cada modo, siendo estas:
+
+\noindent
+$w_n_1$ = 1.112 x102 rad/s
+\\$w_n_2$ = 0.187 x102 rad/s
+\\$w_n_3$ = 0.715 x102 rad/s
+\\$w_n_4$ = 4.007 x102 rad/s
 
 
-Este hace uso del paquete \texttt{booktabs} que mejora la presentación de las mismas y usa los comandos \verb@\toprule@, \verb@\midrule@ y \verb@\bottomrule@.
+Para obtener la matriz de amortiguamiento C, como se conoce las frecuencias naturales de vibración circulares y, la relación de amortiguamiento crítico( $\zeta$ ), para todos los modos de vibración considerados es posible formar la siguiente matriz diagonal:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.40\textwidth]{Imagenes/e2.png}
+    }
+\end{figure}
+
+Siendo $\varepsilon$ el valor de amortiguamiento y $\omega_i$ cada una de las frecuencias naturales circulares de vibración
+
+Para poder obtener finalmente la matriz de amortiguamiento C, se realiza la siguiente operación:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.40\textwidth]{Imagenes/e3.png}
+    }
+\end{figure}
+
+Siendo M la matriz de Masa equivalente de la ecuación de movimiento, X matriz modal normal y $X^T$ su transpuesta
+
+Para obtener las ecuaciones desacopladas partimos de la EDO que modela a nuestro sistema
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.60\textwidth]{Imagenes/e4.png}
+    }
+\end{figure}
+
+Donde F(t)=0.
+Considerando que x(t) es una combinación de la matriz modal norma.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.40\textwidth]{Imagenes/e5.png}
+    }
+\end{figure}
+
+Teniendo en cuenta que la matriz de amortiguamiento proporcional que se obtuvo de Ci y haciendo los reemplazos correspondientes, la ecuación de movimiento re expresada nos queda:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.60\textwidth]{Imagenes/e6.png}
+    }
+\end{figure}
+
+Siendo [ $\omega_i_2$ ] una matriz diagonal que contiene cada una de las frecuencias naturales de vibración del sistema. 
+De esta forma obtenemos un sistema de ecuaciones totalmente desacoplado, donde cada ecuación depende de su constante generalizada $q_i$(t). Expresamos la respuesta de la ecuación dada por la bibliografía:
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.80\textwidth]{Imagenes/e7.png}
+    }
+\end{figure}
+
+Donde:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.30\textwidth]{Imagenes/e8.png}
+    }
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.80\textwidth]{Imagenes/e9.png}
+    }
+\end{figure}
+
+Estas son las condiciones iniciales expresadas en coordenadas generalizadas
+
+Con este método podemos pasar de “Coordenadas Generalizadas” (q(t)) a “Coordenadas geométricas” (x(t)), se obtiene la respuesta de cada uno de los grados de libertad del sistema en el tiempo.
+
+La bibliografía consultada para este procedimiento fue: Daniel J. Inman Engineering Vibration, U4 Multiple Degree of freedom Systems- U4.3 Modal Análisis
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Resultados}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Para $X_0$=[0, 0, 0, 0] y $V_0$=[1.0123, 0, 0, 0] y considerando que no tenemos carga adicional en el efector final ($m_4$= 310kg - peso del brazo)}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r1.png}
+    \caption{Gráfica de posición}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r2.png}
+    \caption{Gráfica de velocidad}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r3.png}
+    \caption{Gráfica de aceleración}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+
+\subsection{Para $X_0$=[0, 0, 0, 0] y $V_0$ =[0, 0.873, 0, 0] y considerando que no tenemos carga adicional en el efector final ($m_4$= 310kg):}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r4.png}
+    \caption{Gráfica de posición}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r5.png}
+    \caption{Gráfica de velocidad}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r6.png}
+    \caption{Gráfica de aceleración}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+
+\subsection{Para $X_0$=[0, 0, 0, 0] y $V_0$=[0, 0, 0.873, 0] y considerando que no tenemos carga adicional en el efector final ($m_4$= 310kg):}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r7.png}
+    \caption{Gráfica de posición}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r8.png}
+    \caption{Gráfica de velocidad}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r9.png}
+    \caption{Gráfica de aceleración}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+
+\subsection{Para $X_0$=[0, 0, 0, 0] y $V_0$=[0, 0, 0, 1.0472] y considerando que no tenemos carga adicional en el efector final ($m_4$= 310kg):}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r10.png}
+    \caption{Gráfica de posición}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r11.png}
+    \caption{Gráfica de velocidad}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r12.png}
+    \caption{Gráfica de aceleración}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+
+\subsection{Para $X_0$=[0, 0, 0, 0] y $V_0$=[1.0123, 0.873, 0.873, 1.0472] y considerando que no tenemos carga adicional en el efector final ($m_4$= 310kg):}
+
+Analizamos el caso para cuando todos los motores tienen una velocidad inicial, es decir:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r13.png}
+    \caption{Gráfica de posición}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r14.png}
+    \caption{Gráfica de velocidad}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r15.png}
+    \caption{Gráfica de aceleración}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+
+\subsection{Para $X_0$=[0, 0, 0, 0] y $V_0$=[1.0123, 0, 0, 0] y considerando que se tiene carga adicional en el efector final ($m_4$= 810 kg):}
+
+Ahora consideraremos una carga que se sostiene en el efector final de 500kg, por lo cual $m_4$ aumentará de 310kg a 810 kg.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r16.png}
+    \caption{Gráfica de posición}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r17.png}
+    \caption{Gráfica de velocidad}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r18.png}
+    \caption{Gráfica de aceleración}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+
+\subsection{Para $X_0$=[0, 0, 0, 0] y $V_0$=[0, 0.873, 0, 0] y considerando que se tiene carga adicional en el efector final ($m_4$= 810 kg):}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r19.png}
+    \caption{Gráfica de posición}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r20.png}
+    \caption{Gráfica de velocidad}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r21.png}
+    \caption{Gráfica de aceleración}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+
+\subsection{Para $X_0$=[0, 0, 0, 0] y $V_0$=[0, 0, 0.873, 0] y considerando que se tiene carga adicional en el efector final ($m_4$= 810 kg):}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r22.png}
+    \caption{Gráfica de posición}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r23.png}
+    \caption{Gráfica de velocidad}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r24.png}
+    \caption{Gráfica de aceleración}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+
+\subsection{Para $X_0$=[0, 0, 0, 0] y $V_0$=[0, 0, 0, 1.0472] y considerando que se tiene carga adicional en el efector final ($m_4$= 810 kg):}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r25.png}
+    \caption{Gráfica de posición}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r26.png}
+    \caption{Gráfica de velocidad}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r27.png}
+    \caption{Gráfica de aceleración}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+
+\subsection{ Para $X_0$=[0, 0, 0, 0] y $V_0$=[1.0123, 0.873, 0.873, 1.0472] y considerando que se tiene carga adicional en el efector final ($m_4$= 810 kg):}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r28.png}
+    \caption{Gráfica de posición}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r29.png}
+    \caption{Gráfica de velocidad}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/r30.png}
+    \caption{Gráfica de aceleración}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Análisis de Datos obtenidos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Para realizar una comparación, analizaremos el caso en el que se considera una velocidad inicial para el 1° gdl y otro para todos los grados de libertad con y sin carga.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/V01GDL.png}
+    \caption{Para V0=[1.0123, 0, 0, 0]}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{Imagenes/V0todos.png}
+    \caption{Para V0=[1.0123, 0.873, 0.873, 1.0472]}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+Analizando los primeros 3 gdl que son más representativos en nuestro sistema, si damos una condición inicial de Velocidad en todos los gdl (el peor de los casos) con o sin carga:
+
+\subsection{Para $X_0$=[0, 0, 0, 0] y $V_0$=[1.0123, 0, 0, 0]}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Imagenes/t1.png}
+    \caption{Tabla(1). Parámetros Máximos y Mínimos ante condición inicial de velocidad en 1° GDL sin carga adicional
+}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Imagenes/t2.png}
+    \caption{Tabla(2). Parámetros Máximos y Mínimos ante condición inicial de velocidad en 1° GDL con carga adicional}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+En el caso que el primer servo se moviera a máxima velocidad, se puede observar que el 1° gdl, con una amplitud máxima absoluta en desplazamiento sin carga de 0.067 rad(3.83°) y con carga de 0.071 rad(4.068°). Comparando las gráficas con el siguiente paper: Vibration damping control of robot arm intended for service application in human environment.
+
+Logramos obtener resultados similares ante los resultados experimentales en la magnitud de la oscilación en desplazamiento del 1° GDL. Por lo cual podemos asegurar que el sistema resiste cambios en la velocidad angular y provee un comportamiento dinámico fluido.
+
+El sistema rechaza perturbaciones de tal forma que podemos afirmar que el sistema ya no vibra luego de 4  segundos
+
+El gdl más afectado es el 3° gdl,con una amplitud máxima absoluta en desplazamiento sin carga de 0.09 rad(5.15°) y con carga de 0.09 rad(5.15°)
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Imagenes/t3.png}
+    \caption{Tabla(3). Parámetros Máximos y Mínimos ante condición inicial de velocidad en cada GDL sin carga adicional}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Imagenes/t4.png}
+    \caption{Tabla(4). Parámetros Máximos y Mínimos ante condición inicial de velocidad en cada GDL con carga adicional}
+    \label{fig:etiqueta de la figura}
+\end{figure}
+
+En el caso que todos los servos se movieran al mismo tiempo a máxima velocidad, podemos observar que el gdl más afectado es el 3° gdl, con una amplitud máxima absoluta en desplazamiento sin carga de 0.16 rad(9.16°) y con carga de 0.298 rad (17.07°).
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusiones}
