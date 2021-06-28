@@ -325,6 +325,51 @@ Todas las imágenes deben incluir una leyenda y en el caso de hacer referencia a
     &\frac{\partial(T)}{\partial(\theta_4)} = 0&
 \end{flalign*}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Reducción de las ecuaciones de Lagrange}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+\text{Se realizó una simplificación para todos los Grados de Libertad:} {sen\theta_i = 0} \text{ y } {cos\theta_i = 1}. \\
+\text{También por ortogonalidad } {\dot{\theta_i}\dot{\theta_j} = 0}. \\ 
+
+\noindent
+\text{Cabe destacar que en primera instancia se considero una fuerza no restitutiva en nuestro modelo} \\
+\text{e impedía la linealización de las ecuaciones. Por eso se suprimió para linealizar las ecuaciones} \\
+\text{equivalentes.}
+
+\subsection{C equivalente}   
+\begin{equation}
+\begin{bmatrix}
+c_1+c_2 & -c_2 & 0 & 0\\
+-c_2 & c_2+c_3 & -c_3 & 0\\
+0 & -c_3 & c_3 & 0\\
+0 & 0 & 0 & c_4
+\end{bmatrix}
+\end{equation} 
+
+\subsection{K equivalente}   
+\begin{equation}
+\begin{bmatrix}
+k_1+k_2-m_1g\frac{R}{2}-m_2gR-(m_3+m_4)g(R-dcm_3_4) & -k_2 & 0 & 0\\
+-k_2 & k_2+k_3 & -k_3 & 0\\
+0 & -k_3 & (m_3+m_4)gdcm_3_4 + k_3 & 0\\
+0 & 0 & 0 & k_4
+\end{bmatrix}
+\end{equation}
+
+\subsection{M equivalente}   
+\begin{equation}
+\begin{bmatrix}
+J_1_Y + m1\frac{R^2}{4}+m_2R^2 & 0 & (m_3+m_4)(Rdcm_3_4) & (m3+m4)R^2\\
+0 &J_2_Y+(m_2\frac{V^2}{2})+(V^2)(m_3+m_4) &-(m_3+m_4)Vdcm_3_4 & 0 \\
+(m_3+m_4)(Rdcm_3_4) & -(m_3+m_4)Vdcm_3_4 & J_3_4_Y+(m_3+m_4)*(dcm_3_4^2) & 0\\
+0 & 0 & 0 & J_4_Z
+\end{bmatrix}
+\end{equation}
+
+
+
 
 \subsection{Ambientes matemáticos}
 Están incluidos los siguientes ambientes:
